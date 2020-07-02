@@ -4,8 +4,8 @@ const SearchInput = () => {
     const sortInitialValue = ['relevance', 'hot', 'top', 'new']
     const limitInitialValue = ['5', '10','15', '20']
     const [query, setQuery] = useState('')
-    const [sortValue, setSortValue] = useState(sortInitialValue[0])
-    const [limitValue, setLimitValue] = useState(limitInitialValue[0])
+    const [setSortValue] = useState(sortInitialValue[0])
+    const [setLimitValue] = useState(limitInitialValue[0])
     return (
         <form>
             <input 
