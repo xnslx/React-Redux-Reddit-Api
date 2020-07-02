@@ -1,7 +1,11 @@
 import React, {useState} from 'react'
 
 const SearchInput = () => {
+    const sortInitialValue = ['relevance', 'hot', 'top', 'new']
+    const limitInitialValue = ['5', '10','15', '20']
     const [query, setQuery] = useState('')
+    const [sortValue, setSortValue] = useState(sortInitialValue[0])
+    const [limitValue, setLimitValue] = useState(limitInitialValue[0])
     return (
         <form>
             <input 
@@ -14,20 +18,18 @@ const SearchInput = () => {
             <br />
             <label>
                 Sort By:
-                <select>
-                    <option value="relevance">relevance</option>
-                    <option value="hot">hot</option>
-                    <option value="top">top</option>
-                    <option value="new">new</option>
+                <select onChange={(e) => setSortValue(e.target.value)}>
+                    {sortInitialValue.map(value => (
+                        <option value={value} key={value}>{value}</option>
+                    ))}
                 </select>
             </label>
             <label>
                 Limit:
-                <select>
-                    <option value="5">5</option>
-                    <option value="10">10</option>
-                    <option value="15">15</option>
-                    <option value="20">20</option>
+                <select onChange={(e) => setLimitValue(e.target.value)}>
+                    {limitInitialValue.map(value => (
+                        <option value={value} key={value}>{value}</option>
+                    ))}
                 </select>
             </label>
             <br />
