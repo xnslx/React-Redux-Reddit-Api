@@ -20,7 +20,7 @@ const postReducer = (state=initialState, action) => {
             }
         case actionsType.GET_POSTS_SUCCESS:
             return {
-                posts:action.payload,
+                posts:action.posts,
                 loading:false,
                 hasError:false
             }
