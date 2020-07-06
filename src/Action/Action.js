@@ -14,7 +14,7 @@ export const userInput = input => {
   };
 };
 
-export const selectSORT = sortOption => {
+export const selectSort = sortOption => {
   return {
     type: SELECT_SORT,
     sortOption

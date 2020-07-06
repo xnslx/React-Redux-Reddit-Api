@@ -1,7 +1,26 @@
 import * as actionsType from '../Action/Action';
+import {combineReducers} from 'redux';
  
 
-export const initialState = {
+const selectedSort = (state = 'relevance', action) => {
+    switch(action.type) {
+        case actionsType.SELECT_SORT:
+            return action.sortOption
+        default:
+            return state
+    }
+}
+
+const selectedLimit = (state = '5', action) => {
+    switch(action.type) {
+        case actionsType.SELECT_LIMIT:
+            return action.limitOption
+        default:
+            return state
+    }
+}
+
+const initialState = {
     posts: [],
     loading:false,
     hasError:false,
@@ -12,7 +31,7 @@ export const initialState = {
 
 const postReducer = (state=initialState, action) => {
     switch(action.type) {
-        case actionsType.GET_POSTS:
+        case actionsType.REQUEST_POSTS:
             return {
                 ...state,
                 loading:true,
@@ -35,5 +54,10 @@ const postReducer = (state=initialState, action) => {
     }
 };
 
-export default postReducer;
+const rootReducer = combineReducers({
+    selectedSort,
+    selectedLimit,
+    postReducer
+})
 
+export default rootReducer;
