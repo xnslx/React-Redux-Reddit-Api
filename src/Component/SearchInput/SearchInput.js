@@ -2,25 +2,38 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {fetchPosts, userInput } from '../../Action/Action';
 import {selectSort, selectLimit} from '../../Action/Action';
+// import {selectedSort} from '../../Reducer/Reducer';
 
 const SearchInput = (props) => {
-    
-    // useEffect(() => {
-    //     props.dispatch(fetchPosts(props.posts))
-    // },[props.posts, props])
+    console.log(props)
+
+    const inputChangeHandler = (e) => {
+        props.dispatch(userInput(e.target.value))
+    }
+    const sortChangeHandler = (sortOption) => {
+        props.dispatch(selectSort(sortOption))
+    }
+
+    const limitChangeHandler = (limitOption) => {
+        props.dispatch(selectLimit(limitOption))
+    }
+
+    const submitHandler = () => {
+        props.dispatch(fetchPosts())
+    }
     return (
         <form>
             <input 
                 type="text" 
                 placeholder="Search Term..."
                 value={props.query}
-                onChange={() =>props.onInput(props.query)}
+                onChange={inputChangeHandler}
             />
             <br />
             <br />
             <label>
                 Sort By:
-                <select onChange={() => props.onSelectSort()}>
+                <select onChange={sortChangeHandler}>
                     {props.sortValue.map(value => (
                         <option value={value} key={value}>{value}</option>
                     ))}
@@ -28,7 +41,7 @@ const SearchInput = (props) => {
             </label>
             <label>
                 Limit:
-                <select onChange={() => props.onSelectLimit()}>
+                <select onChange={limitChangeHandler}>
                     {props.limitValue.map(value => (
                         <option value={value} key={value}>{value}</option>
                     ))}
@@ -37,14 +50,15 @@ const SearchInput = (props) => {
             <br />
             <br />
             <br />
-            <input type="submit" value="search" onClick={() => props.onSubmit()}/>
+            <input type="submit" value="search" onClick={submitHandler}/>
         </form>
     )
 };
 
 const mapStateToProps = state => {
-    // console.log('state', state)
+    console.log('state', state)
     return {
+        selectedSort:state.sort,
         posts:state.postReducer.posts,
         query:state.postReducer.query,
         sortValue:state.postReducer.sortValue,
@@ -52,14 +66,5 @@ const mapStateToProps = state => {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    // console.log(dispatch)
-    return {
-        onInput: () => dispatch(userInput()),
-        onSubmit: () => dispatch(fetchPosts()),
-        onSelectSort: () => dispatch(selectSort()),
-        onSelectLimit: () => dispatch(selectLimit())
-    }
-}
  
-export default connect(mapStateToProps, mapDispatchToProps)(SearchInput);
+export default connect(mapStateToProps)(SearchInput);

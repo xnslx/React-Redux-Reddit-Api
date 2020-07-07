@@ -39,6 +39,7 @@ const postReducer = (state=initialState, action) => {
             }
         case actionsType.GET_POSTS_SUCCESS:
             return {
+                ...state,
                 posts:action.posts,
                 loading:false,
                 hasError:false
@@ -54,7 +55,35 @@ const postReducer = (state=initialState, action) => {
     }
 };
 
+const sort = (state ={},action) => {
+    switch(action.type) {
+        case actionsType.GET_POSTS_SUCCESS:
+        case actionsType.REQUEST_POSTS:
+            return {
+                ...state,
+                [action.sortOption]: state.posts(state[action.sortOption], action)
+            }
+        default:
+            return state
+    }
+}
+
+const limit = (state={},action) => {
+    switch(action.type) {
+        case actionsType.GET_POSTS_SUCCESS:
+        case actionsType.REQUEST_POSTS:
+            return {
+                ...state,
+                [action.limitOption]: state.posts(state[action.limitOption], action)
+            }
+        default:
+            return state
+    }
+}
+
 const rootReducer = combineReducers({
+    sort,
+    limit,
     selectedSort,
     selectedLimit,
     postReducer
