@@ -10,12 +10,12 @@ const SearchInput = (props) => {
     const inputChangeHandler = (e) => {
         props.dispatch(userInput(e.target.value))
     }
-    const sortChangeHandler = (sortOption) => {
-        props.dispatch(selectSort(sortOption))
+    const sortChangeHandler = () => {
+        props.dispatch(selectSort(props.selectedSort))
     }
 
-    const limitChangeHandler = (limitOption) => {
-        props.dispatch(selectLimit(limitOption))
+    const limitChangeHandler = () => {
+        props.dispatch(selectLimit(props.selectedLimit))
     }
 
     const submitHandler = () => {
@@ -34,15 +34,15 @@ const SearchInput = (props) => {
             <label>
                 Sort By:
                 <select onChange={sortChangeHandler}>
-                    {props.sortValue.map(value => (
-                        <option value={value} key={value}>{value}</option>
+                    {props.sorts.map(value => (
+                        <option value={props.selectedSort} key={value}>{value}</option>
                     ))}
                 </select>
             </label>
             <label>
                 Limit:
                 <select onChange={limitChangeHandler}>
-                    {props.limitValue.map(value => (
+                    {props.limits.map(value => (
                         <option value={value} key={value}>{value}</option>
                     ))}
                 </select>
@@ -58,11 +58,10 @@ const SearchInput = (props) => {
 const mapStateToProps = state => {
     console.log('state', state)
     return {
-        selectedSort:state.sort,
-        posts:state.postReducer.posts,
-        query:state.postReducer.query,
-        sortValue:state.postReducer.sortValue,
-        limitValue:state.postReducer.limitValue
+        limits:state.selectedLimit.limitSelection,
+        sorts:state.selectedSort.sortSelection,
+        selectedLimit:state.selectedLimit.selectedLimitOption,
+        selectedSort:state.selectedSort.selectedSortOption,
     }
 }
 

@@ -1,20 +1,35 @@
 import * as actionsType from '../Action/Action';
 import {combineReducers} from 'redux';
  
+const sortInitialState = {
+    sortSelection: ['relevance', 'hot', 'top', 'new' ],
+    selectedSortOption: []
+}
 
-const selectedSort = (state = 'relevance', action) => {
+const selectedSort = (state = sortInitialState, action) => {
     switch(action.type) {
         case actionsType.SELECT_SORT:
-            return action.sortOption
+            return {
+                ...state,
+                selectedSortOption:state.selectedSortOption.splice([action.sortOption], state.index)
+            }
         default:
             return state
     }
 }
 
-const selectedLimit = (state = '5', action) => {
+const limitInitialState = {
+    limitSelection: ['5', '10', '15', '20' ],
+    selectedLimitOption: []
+}
+
+const selectedLimit = (state = limitInitialState, action) => {
     switch(action.type) {
-        case actionsType.SELECT_LIMIT:
-            return action.limitOption
+        case actionsType.SELECT_SORT:
+            return {
+                ...state,
+                selectedLimitOption:state.selectedLimitOption.push(action.limitOption)
+            }
         default:
             return state
     }
@@ -24,12 +39,9 @@ const initialState = {
     posts: [],
     loading:false,
     hasError:false,
-    query:'',
-    sortValue:['relevance', 'hot', 'top', 'new'],
-    limitValue:['5', '10','15', '20']
 }
 
-const postReducer = (state=initialState, action) => {
+const posts = (state=initialState, action) => {
     switch(action.type) {
         case actionsType.REQUEST_POSTS:
             return {
@@ -55,38 +67,11 @@ const postReducer = (state=initialState, action) => {
     }
 };
 
-const sort = (state ={},action) => {
-    switch(action.type) {
-        case actionsType.GET_POSTS_SUCCESS:
-        case actionsType.REQUEST_POSTS:
-            return {
-                ...state,
-                [action.sortOption]: state.posts(state[action.sortOption], action)
-            }
-        default:
-            return state
-    }
-}
-
-const limit = (state={},action) => {
-    switch(action.type) {
-        case actionsType.GET_POSTS_SUCCESS:
-        case actionsType.REQUEST_POSTS:
-            return {
-                ...state,
-                [action.limitOption]: state.posts(state[action.limitOption], action)
-            }
-        default:
-            return state
-    }
-}
 
 const rootReducer = combineReducers({
-    sort,
-    limit,
     selectedSort,
     selectedLimit,
-    postReducer
+    posts
 })
 
 export default rootReducer;
