@@ -7,24 +7,24 @@ export const USER_INPUT = "USER_INPUT";
 export const SELECT_SORT = "SELECT_SORT";
 export const SELECT_LIMIT = "SELECT_LIMIT";
 
-export const userInput = input => {
+export const userInput = query => {
   return {
     type: USER_INPUT,
-    input
+    userInput:query
   };
 };
 
 export const selectSort = sortOption => {
   return {
     type: SELECT_SORT,
-    sortOption
+    sortOption:sortOption
   };
 };
 
 export const selectLimit = limitOption => {
   return {
     type: SELECT_LIMIT,
-    limitOption
+    limitOption:limitOption
   };
 };
 export const requestPosts = posts => {

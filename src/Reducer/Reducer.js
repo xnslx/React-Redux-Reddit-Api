@@ -11,7 +11,7 @@ const selectedSort = (state = sortInitialState, action) => {
         case actionsType.SELECT_SORT:
             return {
                 ...state,
-                selectedSortOption:state.selectedSortOption.splice([action.sortOption], state.index)
+                selectedSortOption:state.selectedSortOption.push(action.sortOption)
             }
         default:
             return state
@@ -36,6 +36,7 @@ const selectedLimit = (state = limitInitialState, action) => {
 }
 
 const initialState = {
+    query:'',
     posts: [],
     loading:false,
     hasError:false,
@@ -43,6 +44,11 @@ const initialState = {
 
 const posts = (state=initialState, action) => {
     switch(action.type) {
+        case actionsType.USER_INPUT:
+            return {
+                ...state,
+                query:action.userInput
+            }
         case actionsType.REQUEST_POSTS:
             return {
                 ...state,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import { connect } from 'react-redux';
 import {fetchPosts, userInput } from '../../Action/Action';
 import {selectSort, selectLimit} from '../../Action/Action';
@@ -7,8 +7,10 @@ import {selectSort, selectLimit} from '../../Action/Action';
 const SearchInput = (props) => {
     console.log(props)
 
+    const textInput = useRef('')
+
     const inputChangeHandler = (e) => {
-        props.dispatch(userInput(e.target.value))
+        props.dispatch(userInput(textInput.current.value))
     }
     const sortChangeHandler = () => {
         props.dispatch(selectSort(props.selectedSort))
@@ -25,6 +27,7 @@ const SearchInput = (props) => {
         <form>
             <input 
                 type="text" 
+                ref={textInput}
                 placeholder="Search Term..."
                 value={props.query}
                 onChange={inputChangeHandler}
@@ -35,7 +38,7 @@ const SearchInput = (props) => {
                 Sort By:
                 <select onChange={sortChangeHandler}>
                     {props.sorts.map(value => (
-                        <option value={props.selectedSort} key={value}>{value}</option>
+                        <option value={value} key={value}>{value}</option>
                     ))}
                 </select>
             </label>
@@ -58,6 +61,7 @@ const SearchInput = (props) => {
 const mapStateToProps = state => {
     console.log('state', state)
     return {
+        query:state.posts.query,
         limits:state.selectedLimit.limitSelection,
         sorts:state.selectedSort.sortSelection,
         selectedLimit:state.selectedLimit.selectedLimitOption,
