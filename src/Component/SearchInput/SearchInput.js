@@ -10,7 +10,7 @@ const SearchInput = (props) => {
     const textInput = useRef('')
 
     const inputChangeHandler = (e) => {
-        props.dispatch(userInput(textInput.current.value))
+        props.dispatch(userInput(e.target.value))
     }
     const sortChangeHandler = () => {
         props.dispatch(selectSort(props.selectedSort))
@@ -29,8 +29,7 @@ const SearchInput = (props) => {
                 type="text" 
                 ref={textInput}
                 placeholder="Search Term..."
-                value={props.query}
-                onChange={inputChangeHandler}
+                onBlur={inputChangeHandler}
             />
             <br />
             <br />

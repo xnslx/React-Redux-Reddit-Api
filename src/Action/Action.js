@@ -6,6 +6,7 @@ export const GET_POSTS_FAIL = "GET_POSTS_FAIL";
 export const USER_INPUT = "USER_INPUT";
 export const SELECT_SORT = "SELECT_SORT";
 export const SELECT_LIMIT = "SELECT_LIMIT";
+export const SAVED_USER_INPUT = 'SAVED_USER_INPUT';
 
 export const userInput = query => {
   return {
@@ -13,6 +14,21 @@ export const userInput = query => {
     userInput:query
   };
 };
+
+// export const savedUserInput = query => {
+//     return {
+//         type: SAVED_USER_INPUT,
+//         userInput:query
+//     }
+// }
+
+// export const userInput = query => {
+//     return dispatch => {
+//         setTimeout(() => {
+//             dispatch(savedUserInput(query))
+//         }, 500);
+//     }
+// }
 
 export const selectSort = sortOption => {
   return {
