@@ -11,7 +11,7 @@ const selectedSort = (state = sortInitialState, action) => {
         case actionsType.SELECT_SORT:
             return {
                 ...state,
-                selectedSortOption:state.selectedSortOption.push(action.sortOption)
+                selectedSortOption:action.sortOption
             }
         default:
             return state

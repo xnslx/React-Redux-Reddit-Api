@@ -15,25 +15,11 @@ export const userInput = query => {
   };
 };
 
-// export const savedUserInput = query => {
-//     return {
-//         type: SAVED_USER_INPUT,
-//         userInput:query
-//     }
-// }
-
-// export const userInput = query => {
-//     return dispatch => {
-//         setTimeout(() => {
-//             dispatch(savedUserInput(query))
-//         }, 500);
-//     }
-// }
 
 export const selectSort = sortOption => {
   return {
     type: SELECT_SORT,
-    sortOption:sortOption
+    sortOption
   };
 };
 
@@ -68,7 +54,7 @@ export const fetchPosts = (query, sortBy, limit, posts) => {
     dispatch(requestPosts(posts));
     return axios
       .get(
-        `https://www.reddit.com/r/subreddit/search.json?q={query}&sort={sortBy}&limit={limit} `
+        `https://www.reddit.com/r/subreddit/search.json?q=${query}&sort=${sortBy}&limit=${limit} `
       )
       .then(res => {
         res.json();

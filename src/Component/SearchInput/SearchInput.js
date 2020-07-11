@@ -12,8 +12,9 @@ const SearchInput = (props) => {
     const inputChangeHandler = (e) => {
         props.dispatch(userInput(e.target.value))
     }
-    const sortChangeHandler = () => {
-        props.dispatch(selectSort(props.selectedSort))
+    const sortChangeHandler = (selectedSort) => {
+        console.log(selectedSort)
+        props.dispatch(selectSort(selectedSort))
     }
 
     const limitChangeHandler = () => {
@@ -21,7 +22,7 @@ const SearchInput = (props) => {
     }
 
     const submitHandler = () => {
-        props.dispatch(fetchPosts())
+        props.dispatch(fetchPosts(props.query))
     }
     return (
         <form>
@@ -37,7 +38,7 @@ const SearchInput = (props) => {
                 Sort By:
                 <select onChange={sortChangeHandler}>
                     {props.sorts.map(value => (
-                        <option value={value} key={value}>{value}</option>
+                        <option value={props.selectedSort} key={value}>{value}</option>
                     ))}
                 </select>
             </label>
