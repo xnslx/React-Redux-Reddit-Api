@@ -37,16 +37,16 @@ const SearchInput = (props) => {
             <label>
                 Sort By:
                 <select onChange={sortChangeHandler}>
-                    {props.sorts.map(value => (
-                        <option value={props.selectedSort} key={value}>{value}</option>
+                    {props.sorts.map(sort => (
+                        <option value={sort.value} key={sort.value}>{sort.displayValue}</option>
                     ))}
                 </select>
             </label>
             <label>
                 Limit:
                 <select onChange={limitChangeHandler}>
-                    {props.limits.map(value => (
-                        <option value={value} key={value}>{value}</option>
+                    {props.limits.map(limit => (
+                        <option value={limit.value} key={limit.value}>{limit.displayValue}</option>
                     ))}
                 </select>
             </label>
@@ -59,13 +59,14 @@ const SearchInput = (props) => {
 };
 
 const mapStateToProps = state => {
-    console.log('state', state)
     return {
         query:state.posts.query,
-        limits:state.selectedLimit.limitSelection,
-        sorts:state.selectedSort.sortSelection,
-        selectedLimit:state.selectedLimit.selectedLimitOption,
-        selectedSort:state.selectedSort.selectedSortOption,
+        sorts:state.selectedSort.sortOptions.map(option => {
+            return option
+        }),
+        limits:state.selectedLimit.limitOptions.map(option => {
+            return option
+        })
     }
 }
 
