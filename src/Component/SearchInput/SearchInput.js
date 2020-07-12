@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {fetchPosts, userInput } from '../../Action/Action';
 import {selectSort, selectLimit} from '../../Action/Action';
 // import {selectedSort} from '../../Reducer/Reducer';
+import Posts from '../Posts/Posts';
 
 const SearchInput = (props) => {
 
@@ -32,41 +33,46 @@ const SearchInput = (props) => {
     }
 
     return (
-        <form>
-            <input 
-                type="text" 
-                ref={textInput}
-                placeholder="Search Term..."
-                onBlur={inputChangeHandler}
-            />
-            <br />
-            <br />
-            <label>
-                Sort By:
-                <select onChange={sortChangeHandler} value={props.sortValue}>
-                    {props.sorts.map(sort => (
-                        <option value={sort.value} key={sort.value}>{sort.displayValue}</option>
-                    ))}
-                </select>
-            </label>
-            <label>
-                Limit:
-                <select onChange={limitChangeHandler} value={props.limitValue}>
-                    {props.limits.map(limit => (
-                        <option value={limit.value} key={limit.value}>{limit.displayValue}</option>
-                    ))}
-                </select>
-            </label>
-            <br />
-            <br />
-            <br />
-            <input type="submit" value="search" onClick={submitHandler}/>
-        </form>
+        <>
+            <form>
+                <input 
+                    type="text" 
+                    ref={textInput}
+                    placeholder="Search Term..."
+                    onBlur={inputChangeHandler}
+                />
+                <br />
+                <br />
+                <label>
+                    Sort By:
+                    <select onChange={sortChangeHandler} value={props.sortValue}>
+                        {props.sorts.map(sort => (
+                            <option value={sort.value} key={sort.value}>{sort.displayValue}</option>
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    Limit:
+                    <select onChange={limitChangeHandler} value={props.limitValue}>
+                        {props.limits.map(limit => (
+                            <option value={limit.value} key={limit.value}>{limit.displayValue}</option>
+                        ))}
+                    </select>
+                </label>
+                <br />
+                <br />
+                <br />
+                <input type="submit" value="search" onClick={submitHandler}/>
+            </form>
+            <Posts posts={props.posts}/>
+        </>
     )
 };
 
 const mapStateToProps = state => {
+    console.log('state', state)
     return {
+        posts:state.posts.posts,
         query:state.posts.query,
         sorts:state.selectedSort.sortOptions.map(option => {
             return option
