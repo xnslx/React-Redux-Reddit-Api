@@ -2,12 +2,6 @@ import * as actionsType from '../Action/Action';
 import {combineReducers} from 'redux';
  
 const sortInitialState = {
-    sortOptions: [
-        {value:'relevance', displayValue:'relevance'},
-        {value:'hot', displayValue:'hot'},
-        {value:'top', displayValue:'top'},
-        {value:'new', displayValue:'new'}
-    ],
     value:''
 }
 
@@ -16,7 +10,7 @@ const selectedSort = (state = sortInitialState, action) => {
         case actionsType.SELECT_SORT:
             return {
                 ...state,
-                selectedSortOption:action.sortOption
+                value:action.sortOption
             }
         default:
             return state
@@ -24,21 +18,15 @@ const selectedSort = (state = sortInitialState, action) => {
 }
 
 const limitInitialState = {
-    limitOptions:[
-        {value:'5', displayValue:'5'},
-        {value:'10', displayValue:'10'},
-        {value:'15', displayValue:'15'},
-        {value:'20', displayValue:'20'}
-    ],
     value:''
 }
 
 const selectedLimit = (state = limitInitialState, action) => {
     switch(action.type) {
-        case actionsType.SELECT_SORT:
+        case actionsType.SELECT_LIMIT:
             return {
                 ...state,
-                selectedLimitOption:state.selectedLimitOption.push(action.limitOption)
+                value:action.limitOption
             }
         default:
             return state

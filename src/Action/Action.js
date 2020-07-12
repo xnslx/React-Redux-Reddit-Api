@@ -26,7 +26,7 @@ export const selectSort = sortOption => {
 export const selectLimit = limitOption => {
   return {
     type: SELECT_LIMIT,
-    limitOption:limitOption
+    limitOption
   };
 };
 export const requestPosts = posts => {
