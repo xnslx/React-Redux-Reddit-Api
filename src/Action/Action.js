@@ -36,10 +36,10 @@ export const requestPosts = posts => {
   };
 };
 
-export const getPostsSuccess = json => {
+export const getPostsSuccess = data => {
   return {
     type: GET_POSTS_SUCCESS,
-    posts: json.data.children.map(child => child.data)
+    posts: data.children.map(child => child.data)
   };
 };
 
@@ -49,19 +49,24 @@ export const getPostsFail = () => {
   };
 };
 
-export const fetchPosts = (query, sortBy, limit, posts) => {
-  return dispatch => {
-    dispatch(requestPosts(posts));
-    return axios
-      .get(
+export const fetchPosts = async (query, sortBy, limit) => {
+  const result = await axios
+    .get(
         `https://www.reddit.com/r/subreddit/search.json?q=${query}&sort=${sortBy}&limit=${limit} `
-      )
-      .then(res => {
-        res.json();
-      })
-      .then(json => dispatch(getPostsSuccess(posts, json)))
-      .catch(err => {
-        dispatch(getPostsFail(err));
-      });
-  };
+    )
+    .catch(error => console.log(error))
+    console.log(result)
+    return getPostsSuccess(result.data.data)
 };
+
+// two ways of fetching api
+
+
+// export const fetchPosts = (query, sortBy, limit) => {
+//     return dispatch => {
+//         dispatch(requestPosts(query, sortBy, limit))
+//         return fetch(`https://www.reddit.com/r/subreddit/search.json?q=${query}&sort=${sortBy}&limit=${limit} `)
+//             .then(response => response.json())
+//             .then(json => dispatch(getPostsSuccess(json)))
+//     }
+// }

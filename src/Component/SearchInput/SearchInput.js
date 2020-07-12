@@ -37,8 +37,14 @@ const SearchInput = (props) => {
         props.dispatch(selectLimit(e.target.value))
     }
 
-    const submitHandler = () => {
-        props.dispatch(fetchPosts(props.query))
+    const submitHandler = async e => {
+        e.preventDefault()
+        const result = await fetchPosts(
+            props.query,
+            props.sortValue,
+            props.limitValue
+        )
+        props.dispatch(result)
     }
 
     return (
@@ -53,7 +59,7 @@ const SearchInput = (props) => {
             <br />
             <label>
                 Sort By:
-                <select onChange={sortChangeHandler}>
+                <select onChange={sortChangeHandler} value={props.sortValue}>
                     {sortOptions.map(sort => (
                         <option value={sort.value} key={sort.value}>{sort.value}</option>
                     ))}
@@ -61,7 +67,7 @@ const SearchInput = (props) => {
             </label>
             <label>
                 Limit:
-                <select onChange={limitChangeHandler}>
+                <select onChange={limitChangeHandler} value={props.limitValue}>
                     {limitOptions.map(limit => (
                         <option value={limit.value} key={limit.value}>{limit.value}</option>
                     ))}
