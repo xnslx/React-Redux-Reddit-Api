@@ -6,22 +6,6 @@ import {selectSort, selectLimit} from '../../Action/Action';
 
 const SearchInput = (props) => {
 
-    const sortOptions = [
-        {value:'relevance', displayValue:'relevance'},
-        {value:'hot', displayValue:'hot'},
-        {value:'top', displayValue:'top'},
-        {value:'new', displayValue:'new'}
-    ]
-
-    const limitOptions = [
-        {value:'5', displayValue:'5'},
-        {value:'10', displayValue:'10'},
-        {value:'15', displayValue:'15'},
-        {value:'20', displayValue:'20'}
-    ]
-
-    // console.log(props)
-
     const textInput = useRef('')
 
     const inputChangeHandler = (e) => {
@@ -60,16 +44,16 @@ const SearchInput = (props) => {
             <label>
                 Sort By:
                 <select onChange={sortChangeHandler} value={props.sortValue}>
-                    {sortOptions.map(sort => (
-                        <option value={sort.value} key={sort.value}>{sort.value}</option>
+                    {props.sorts.map(sort => (
+                        <option value={sort.value} key={sort.value}>{sort.displayValue}</option>
                     ))}
                 </select>
             </label>
             <label>
                 Limit:
                 <select onChange={limitChangeHandler} value={props.limitValue}>
-                    {limitOptions.map(limit => (
-                        <option value={limit.value} key={limit.value}>{limit.value}</option>
+                    {props.limits.map(limit => (
+                        <option value={limit.value} key={limit.value}>{limit.displayValue}</option>
                     ))}
                 </select>
             </label>
@@ -84,14 +68,14 @@ const SearchInput = (props) => {
 const mapStateToProps = state => {
     return {
         query:state.posts.query,
-        // sorts:state.selectedSort.sortOptions.map(option => {
-        //     return option
-        // }),
-        // limits:state.selectedLimit.limitOptions.map(option => {
-        //     return option
-        // }),
-        sortValue:state.selectedSort,
-        limitValue:state.selectedLimit
+        sorts:state.selectedSort.sortOptions.map(option => {
+            return option
+        }),
+        limits:state.selectedLimit.limitOptions.map(option => {
+            return option
+        }),
+        sortValue:state.selectedSort.value,
+        limitValue:state.selectedLimit.value
     }
 }
 
