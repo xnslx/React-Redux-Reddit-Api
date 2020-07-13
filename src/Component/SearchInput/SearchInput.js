@@ -4,6 +4,7 @@ import {fetchPosts, userInput } from '../../Action/Action';
 import {selectSort, selectLimit} from '../../Action/Action';
 // import {selectedSort} from '../../Reducer/Reducer';
 import Posts from '../Posts/Posts';
+import classes from './SearchInput.module.css';
 
 const SearchInput = (props) => {
 
@@ -34,18 +35,19 @@ const SearchInput = (props) => {
 
     return (
         <>
-            <form>
+            <form className={classes.Form}>
                 <input 
                     type="text" 
                     ref={textInput}
                     placeholder="Search Term..."
                     onBlur={inputChangeHandler}
+                    className={classes.Input}
                 />
                 <br />
                 <br />
-                <label>
+                <label className={classes.Label}>
                     Sort By:
-                    <select onChange={sortChangeHandler} value={props.sortValue}>
+                    <select onChange={sortChangeHandler} value={props.sortValue} className={classes.Select}>
                         {props.sorts.map(sort => (
                             <option value={sort.value} key={sort.value}>{sort.displayValue}</option>
                         ))}
@@ -53,7 +55,7 @@ const SearchInput = (props) => {
                 </label>
                 <label>
                     Limit:
-                    <select onChange={limitChangeHandler} value={props.limitValue}>
+                    <select onChange={limitChangeHandler} value={props.limitValue} className={classes.Select}>
                         {props.limits.map(limit => (
                             <option value={limit.value} key={limit.value}>{limit.displayValue}</option>
                         ))}
@@ -62,7 +64,7 @@ const SearchInput = (props) => {
                 <br />
                 <br />
                 <br />
-                <input type="submit" value="search" onClick={submitHandler}/>
+                <input type="submit" value="SEARCH" onClick={submitHandler} className={classes.Button}/>
             </form>
             <Posts posts={props.posts}/>
         </>

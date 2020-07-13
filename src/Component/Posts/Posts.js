@@ -1,15 +1,16 @@
-import React from 'react'
+import React from 'react';
+import classes from './Posts.module.css';
 
 const Posts = (props) => {
     console.log(props)
     const {posts} = props;
     console.log(posts)
     return (
-        <ul>
-            {posts.map(post => (
-                <li key={post.index}>{post.title}</li>
+        <div className={classes.Container}>
+            {posts.map((post,index) => (
+                <li key={index} className={classes.List}>{post.title}</li>
             ))}
-        </ul>
+        </div>
     )
 };
 

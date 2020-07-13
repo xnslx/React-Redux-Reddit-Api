@@ -1,0 +1,35 @@
+.Form {
+    /* background-color: red; */
+    /* height: 200px; */
+    margin-top: 60px;
+}
+
+.Input {
+    /* background-color: yellow; */
+    border: 2px solid black;
+    width: 80%;
+    height: 44px;
+    text-indent: 4%;
+}
+
+.Select {
+    /* background-color: yellow; */
+    width: 20%;
+    height: 20px;
+}
+
+.Button {
+    /* border: 2px solid black; */
+    margin-top: -20px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color: #b26725;
+    border-style: none;
+    width: 80%;
+    height: 44px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Oswald', sans-serif;
+}
