@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/React-Redux-Reddit-Api/static/css/main.dff2c270.chunk.css",
+    "main.js": "/React-Redux-Reddit-Api/static/js/main.262d96e1.chunk.js",
+    "main.js.map": "/React-Redux-Reddit-Api/static/js/main.262d96e1.chunk.js.map",
+    "runtime-main.js": "/React-Redux-Reddit-Api/static/js/runtime-main.4d93e9cb.js",
+    "runtime-main.js.map": "/React-Redux-Reddit-Api/static/js/runtime-main.4d93e9cb.js.map",
+    "static/js/2.638b04cc.chunk.js": "/React-Redux-Reddit-Api/static/js/2.638b04cc.chunk.js",
+    "static/js/2.638b04cc.chunk.js.map": "/React-Redux-Reddit-Api/static/js/2.638b04cc.chunk.js.map",
+    "index.html": "/React-Redux-Reddit-Api/index.html",
+    "precache-manifest.3743029fad011f89ea0623816cfbdbfe.js": "/React-Redux-Reddit-Api/precache-manifest.3743029fad011f89ea0623816cfbdbfe.js",
+    "service-worker.js": "/React-Redux-Reddit-Api/service-worker.js",
+    "static/css/main.dff2c270.chunk.css.map": "/React-Redux-Reddit-Api/static/css/main.dff2c270.chunk.css.map",
+    "static/js/2.638b04cc.chunk.js.LICENSE.txt": "/React-Redux-Reddit-Api/static/js/2.638b04cc.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4d93e9cb.js",
+    "static/js/2.638b04cc.chunk.js",
+    "static/css/main.dff2c270.chunk.css",
+    "static/js/main.262d96e1.chunk.js"
+  ]
+}
