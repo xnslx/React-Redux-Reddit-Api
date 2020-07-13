@@ -72,7 +72,7 @@ const SearchInput = (props) => {
 };
 
 const mapStateToProps = state => {
-    console.log('state', state)
+    // console.log('state', state)
     return {
         posts:state.posts.posts,
         query:state.posts.query,

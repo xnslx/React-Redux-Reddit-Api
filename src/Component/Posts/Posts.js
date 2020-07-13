@@ -2,9 +2,9 @@ import React from 'react';
 import classes from './Posts.module.css';
 
 const Posts = (props) => {
-    console.log(props)
+    // console.log(props)
     const {posts} = props;
-    console.log(posts)
+    // console.log(posts)
     return (
         <div className={classes.Container}>
             {posts.map((post,index) => (
