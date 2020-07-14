@@ -2,7 +2,6 @@ import React, {useRef} from 'react';
 import { connect } from 'react-redux';
 import {fetchPosts, userInput } from '../../Action/Action';
 import {selectSort, selectLimit} from '../../Action/Action';
-// import {selectedSort} from '../../Reducer/Reducer';
 import Posts from '../Posts/Posts';
 import classes from './SearchInput.module.css';
 
@@ -14,8 +13,6 @@ const SearchInput = (props) => {
         props.dispatch(userInput(e.target.value))
     }
     const sortChangeHandler = (e) => {
-        // console.log(e.target.value)
-        // console.log(props.sortValue)
         props.dispatch(selectSort(e.target.value))
     }
 
